@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import StyledBox from "./components/StyledBox";
+
+import { useState } from "react";
+import ColorForm from "./components/ColorForm";
 
 function App() {
+  //state var
+  //create var create boxes
+  const [box, setBox] = useState(["red", "blue", "purple"]);
+
+  //copy in order to add to the state
+  //spread so it gets new values
+  const addBoxes = (newBackgroundBox) => {
+    const updatedBoxes = [...box, newBackgroundBox];
+    setBox(updatedBoxes);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ColorForm addBoxes={addBoxes} />
+      <StyledBox box={box} />
     </div>
   );
 }
